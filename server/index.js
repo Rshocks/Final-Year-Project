@@ -8,13 +8,13 @@ import postRoutes from './routes/posts.js';
 // using express middleware to connect application
 const app = express();
 
-//posts must be used after localhost 5000 as I added prefix
-app.use('/posts', postRoutes);
-
 // body parser to send requests
 app.use(bodyParser.json({ limit: "30mb", extended:true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended:true}));
 app.use(cors());
+
+//posts must be used after localhost 5000 as I added prefix
+app.use('/posts', postRoutes);
 
 //Mongo is hosting my database in their cloud
 // add ip address on mongo cloud if not working

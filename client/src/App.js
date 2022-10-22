@@ -19,12 +19,11 @@ const App = () => {
     return (
         <Container maxWidth="lg">
             <AppBar className={classes.appBar} position="static" color="inherit">
-                <Typography className={classes.heading} varient="h2" allign="center">Echo</Typography>
-                <img className={classes.image} src={echo} alt="echo" height="60"/>
+                <img className={classes.image} src={echo} alt="echo" height="80"/>
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" allignItems="stretch" spacing={3}>
+                    <Grid container justifyContent="space-between" allignitems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
                             <Posts />
                         </Grid>
