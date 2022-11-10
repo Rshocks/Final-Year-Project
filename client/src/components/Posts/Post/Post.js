@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deletePost } from "../../../actions/posts";
+import { deletePost, likePost, updatePost } from "../../../actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
@@ -20,7 +20,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography varient="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button style={{color: 'white'}} size="small" onClick={() => {} }>
+                <Button style={{color: 'white'}} size="small" onClick={() => dispatch(updatePost(post._id))}>
                     <MoreHorizIcon fontSize="medium" />
                 </Button>
             </div>
@@ -29,17 +29,17 @@ const Post = ({ post, setCurrentId }) => {
             </div>
             <Typography className={classes.title} varient="h5" gutterBottom>{post.title}</Typography>
             <CardContent>
-                <Typography varient="h5" gutterBottom>{post.message}</Typography>
+                <Typography varient="body2" color="textSecondary" component="p">{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" onClick={() => {}}>
+                <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
                     <ThumbUpAltIcon fontSize="small" />
-                    Like
+                    &nbsp; Like &nbsp;
                     {post.likeCount}
                 </Button>
                 <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id))}>
                     <DeleteIcon fontSize="small" />
-                    Delete
+                    &nbsp; Delete
                 </Button>
             </CardActions>
         </Card>
