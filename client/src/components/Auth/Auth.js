@@ -1,17 +1,28 @@
-import React, { useState }from "react";
-import { Avatar, Button, Paper, Grid, Typography,Container, TextField } from "@material-ui/core";
+import React, { useEffect, useState }from "react";
+import { Avatar, Button, Paper, Grid, Typography,Container } from "@material-ui/core";
+import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { gapi } from 'gapi-script';
+import { useDispatch } from 'react-redux'
 
 import useStyles from './styles'
 import Input from './Input';
-
+import Icon from './icon';
 const Auth = () => {
     
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
-
+    const dispatch = useDispatch();
     //const isSignUp = false;
+
+    const clientId = "614576255272-8249k5fbektlr3m8qbrdjlnkdhtq9cd4.apps.googleusercontent.com";
+    useEffect(() => {
+        gapi.load("client:auth2",()=>{
+            gapi.auth2.init({clientId:clientId})
+        })
+    },[])
+
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
     const handleSubmit = () => {
@@ -25,6 +36,23 @@ const Auth = () => {
     const switchMode = () => {
         setIsSignUp((prevIsSignUp) => !prevIsSignUp);
         handleShowPassword(false);
+    };
+
+    const googleSuccess = async (res) => {
+        //res?. not going to throw an error if don't have access to res object
+        const result = res?.profileObj;
+        const token = res?.tokenId;
+
+        try {
+            dispatch({type:'AUTH', data:{ result, token} });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const googleFailure = (error) => {
+        console.log(error);
+        console.log("Google Sign in was unsuccessful, Try again later")
     };
 
     return (
@@ -48,6 +76,15 @@ const Auth = () => {
                         {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
                     </Grid>
                     <Button type="submit" fullwidth variant="contained" color="primary" className={classes.submit}>{isSignUp ? 'Sign Up' : 'Sign In'}</Button>
+                    <GoogleLogin 
+                        clientId={clientId}
+                        render={(renderProps) => (
+                            <Button className={classes.googleButton} color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">Google Sign In</Button>
+                        )}
+                        onSuccess={googleSuccess}
+                        onFailure={googleFailure}
+                        cookiePolicy="single_host_origin"
+                    />
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>{isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}</Button>
