@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/user.js';
 
 // using express middleware to connect application
 const app = express();
@@ -15,10 +16,10 @@ app.use(cors());
 
 //posts must be used after localhost 5000 as I added prefix
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 //Mongo is hosting my database in their cloud
 // add ip address on mongo cloud if not working
-
 const CONNECTION_URL = 'mongodb+srv://Ronan22:Ronan22@cluster1.ooyrle4.mongodb.net/?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 

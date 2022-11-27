@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import useStyles from './styles'
 import Input from './Input';
 import Icon from './icon';
+import { signin, signup } from '../../actions/auth'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
@@ -32,7 +33,13 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        //console.log(formData);
+
+        if(isSignUp){
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+        }
     };
 
     const handleChange = (e) => {
