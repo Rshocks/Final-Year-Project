@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from 'cors';
 
 import postRoutes from './routes/posts.js';
-import userRoutes from './routes/user.js';
+import userRoutes from './routes/users.js';
 
 // using express middleware to connect application
 const app = express();
