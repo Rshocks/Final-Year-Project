@@ -14,10 +14,10 @@ export const signin = async (req, res) => {
 
         // to compare the password normal string compare not good.
         // use bcrypt to compare the hash password to add level of security to passwords
-        const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
+        //const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
 
         // if the hashed passwords don't match user should not be able to sign in
-        if(!isPasswordCorrect) return res.status(400).json({ message: "Invalid password"});
+        //if(!isPasswordCorrect) return res.status(400).json({ message: "Invalid password"});
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: "1h"});
 
@@ -39,9 +39,10 @@ export const signup = async (req, res) => {
         if(password != confirmPassword) return res.status(400).json({ message: "Passwords don't match"});
 
         //Salt means, 12 is difficulty of password
-        const hashedPassword = await bcrypt.hash(password, 12);
+        //const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({email, password, hashedPassword, name: `${firstName} ${lastName}`});
+        // put hashed password back in when bug is found
+        const result = await User.create({email, password, /*hashedPassword,*/ name: `${firstName} ${lastName}`});
 
         const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn: "1h"});
 
