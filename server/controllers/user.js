@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken';
 
 import User from '../models/user.js';
 
+const secret = 'test';
+
 export const signin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -19,7 +21,7 @@ export const signin = async (req, res) => {
         // if the hashed passwords don't match user should not be able to sign in
         //if(!isPasswordCorrect) return res.status(400).json({ message: "Invalid password"});
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: "1h"});
+        const token = jwt.sign({ email: existingUser.email, id: existingUser._id}, secret, {expiresIn: "1h"});
 
         res.status(200).json({ result: existingUser, token});
     } catch(error){
@@ -44,7 +46,7 @@ export const signup = async (req, res) => {
         // put hashed password back in when bug is found
         const result = await User.create({email, password, /*hashedPassword,*/ name: `${firstName} ${lastName}`});
 
-        const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn: "1h"});
+        const token = jwt.sign({ email: result.email, id: result._id}, secret, {expiresIn: "1h"});
 
         res.status(200).json({ result, token});
     } catch (error) {
