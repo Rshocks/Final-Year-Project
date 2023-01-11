@@ -19,6 +19,16 @@ export const getPosts = async (req, res) => {
     }
 }
 
+export const getPostsBySearch = async (req, res) => {
+    
+
+    try {
+
+    } catch (error) {
+
+    }
+}
+
 // request 200 success, request 400 client error, and log error
 export const createPost = async(req, res) => {
     const post = req.body;
