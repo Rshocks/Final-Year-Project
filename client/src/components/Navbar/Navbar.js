@@ -37,10 +37,9 @@ const Navbar = () => {
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
-            <div className={classes.brandContainer}>
+            <Link to="/" className={classes.brandContainer}>
                 <img className={classes.image} src={echo} alt="echo" height="80" component={Link} to="/"/>
-                <Button component={Link} to="/" variant="contained" color="primary">Home</Button>
-            </div>
+            </Link>
             <Toolbar className={classes.toolbar}>
                 {user ? (
                     <div className={classes.profile}>

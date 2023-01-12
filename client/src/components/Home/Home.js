@@ -33,9 +33,10 @@ const Home = () => {
     }, [currentId, dispatch]);
 
     const searchPost = () => {
-        if(search.trim()) {
+        if(search.trim() || tags) {
             //dispatch logic
             dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         }
         else {
             history.push('/')
@@ -73,6 +74,7 @@ const Home = () => {
                         <Button onClick={searchPost} variant="contained" className={classes.searchButton} color="primary">Listen for a Echo</Button>
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId} />
+                    <br></br>
                     <Paper elevation={6}>
                         <Pagination />
                     </Paper>
