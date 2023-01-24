@@ -1,13 +1,13 @@
 import React from "react";
 import useStyles from './styles'
-import { ButtonBase,Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import  ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deletePost, likePost, updatePost } from "../../../actions/posts";
+import { deletePost, likePost } from "../../../actions/posts";
 import { useHistory } from "react-router-dom";
 
 // if theres an error with loading the posts its coming from this js script just take out
@@ -35,14 +35,13 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
         <Card className={classes.card} raised elevation={6}>
-            <ButtonBase className={classes.cardAction} onClick={openPost}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
             <div className={classes.overlay}>
                 <Typography varient="h6">{post.name}</Typography>
                 <Typography varient="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button style={{color: 'white'}} size="small" onClick={() => dispatch(updatePost(post._id))}>
+                <Button style={{color: 'white'}} size="small" onClick={openPost}>
                     <MoreHorizIcon fontSize="medium" />
                 </Button>
             </div>
@@ -53,7 +52,6 @@ const Post = ({ post, setCurrentId }) => {
             <CardContent>
                 <Typography varient="body2" color="textSecondary" component="p">{post.message}</Typography>
             </CardContent>
-            </ButtonBase>
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
                     <Likes />
