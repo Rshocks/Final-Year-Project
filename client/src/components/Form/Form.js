@@ -41,7 +41,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if(!user?.result?.name){
         return(
             <Paper classnName={classes.paper}>
-                <Typography variant="h6" align="center">
+                <Typography className={classes.signInUp} variant="h6" align="center">
                     Please Sign In, or up to like and create your own Echo!
                 </Typography>
             </Paper>

@@ -24,7 +24,9 @@ export default makeStyles((theme) => ({
   },
   echoTitle: {
     fontWeight: 'bold',
-    color: 'darkorange',
+    fontStyle: 'italic'
+  },
+  signInUp: {
     fontStyle: 'italic'
   },
 }));
