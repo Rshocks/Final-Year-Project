@@ -3,7 +3,7 @@ import { TextField, Button, Typography } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
 import useStyles from './styles';
-//import { commentPost } from '../../actions/posts';
+import { commentPost } from '../../actions/posts';
 
 const CommentSection = ({ post }) => {
 
@@ -16,7 +16,7 @@ const CommentSection = ({ post }) => {
     const handleClick = () => {
         const finalComment = `${user.result.name}: ${comment}`;
 
-        //dispatch(commentPost(finalComment, post._id))
+        dispatch(commentPost(finalComment, post._id))
     };
 
     return(

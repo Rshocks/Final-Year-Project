@@ -2,6 +2,14 @@ import * as api from '../api'
 import { FETCH_POST, START_LOADING ,END_LOADING, FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
 
 //action creators
+export const commentPost = (value, id) => async (dispatch) => {
+    try {
+        await api.comment(value, id);
+    }catch (error) {
+
+    }
+}
+
 export const getPosts = (page) => async (dispatch) => {
     try 
     {

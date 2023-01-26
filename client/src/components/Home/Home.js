@@ -1,14 +1,14 @@
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button} from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ChipInput from 'material-ui-chip-input'
+import SearchIcon from '@material-ui/icons/Search';
 
 import  Pagination  from '../Pagination';
-import { getPosts, getPostsBySearch } from '../../actions/posts';
+import { getPostsBySearch } from '../../actions/posts';
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
-import { mergeClasses } from '@material-ui/styles';
 
 import useStyles from './styles';
 
@@ -70,7 +70,7 @@ const Home = () => {
                             label="Search Tags"
                             variant="outlined"
                         />
-                        <Button onClick={searchPost} variant="contained" className={classes.searchButton} color="primary">Listen for a Echo</Button>
+                        <Button startIcon={<SearchIcon />} onClick={searchPost} variant="contained" className={classes.searchButton} color="primary">Listen for a Echo</Button>
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId} />
                     {(!searchQuery && !tags.length) && (
