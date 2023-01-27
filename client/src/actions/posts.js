@@ -4,9 +4,10 @@ import { FETCH_POST, START_LOADING ,END_LOADING, FETCH_ALL, FETCH_BY_SEARCH, CRE
 //action creators
 export const commentPost = (value, id) => async (dispatch) => {
     try {
-        await api.comment(value, id);
+        const { data } = await api.comment(value, id);
+        console.log(data); // should return a new post of an array of comments
     }catch (error) {
-
+        console.log(error.message);
     }
 }
 
