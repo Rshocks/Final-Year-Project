@@ -9,6 +9,7 @@ import useStyles from './styles'
 import Input from './Input';
 import Icon from './icon';
 import { signin, signup } from '../../actions/auth';
+import PersonIcon from '@material-ui/icons/Person';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
@@ -89,7 +90,7 @@ const Auth = () => {
                         <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
                         {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
                     </Grid>
-                    <Button type="submit" fullwidth variant="contained" color="primary" className={classes.submit}>{isSignUp ? 'Sign Up' : 'Sign In'}</Button>
+                    <Button startIcon={<PersonIcon />} type="submit" fullwidth variant="contained" color="primary" className={classes.submit}>{isSignUp ? 'Sign Up' : 'Sign In'}</Button>
                     <GoogleLogin 
                         clientId={clientId}
                         render={(renderProps) => (

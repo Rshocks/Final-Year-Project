@@ -11,10 +11,6 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     padding: '10px 50px',
   },
-  heading: {
-    color: 'rgba(0,183,255, 1)',
-    textDecoration: 'none',
-  },
   image: {
     marginLeft: '-5px',
   },
