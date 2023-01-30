@@ -7,8 +7,6 @@ import { createPost, updatePost } from "../../actions/posts";
 import { useHistory } from "react-router-dom";
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
 
 //get current id of the post on
 
@@ -45,7 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if(!user?.result?.name){
         return(
             <Paper className={classes.paper}>
-                <Typography className={classes.signInUp} variant="h6" align="center" startIcon={<AccountCircleIcon />}>
+                <Typography className={classes.signInUp} variant="h6" align="center">
                     Please Sign In, or Sign Up to like and create your own Echo!
                 </Typography>
             </Paper>
@@ -58,7 +56,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <Typography className={classes.echoTitle} varient="h6">{currentId ? 'Editing' : 'Creating' } a Echo</Typography>
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}/>
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}/>
-                <TextField name="tags" variant="outlined" label="Tags" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}/>
+                <TextField name="tags" variant="outlined" label="Tags comma to seperate" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}/>
                 <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
                 <Button startIcon={<NoteAddIcon />} className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Post</Button>
                 <Button startIcon={<DeleteOutlineIcon />} variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>

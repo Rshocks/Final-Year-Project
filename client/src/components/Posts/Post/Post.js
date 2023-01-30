@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 // if theres an error with loading the posts its coming from this js script just take out
 // ButtonBase line 38 and its closing tag on line 56
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -55,7 +55,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography varient="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button style={{color: 'white'}} size="small" onClick={openPost}>
+                <Button style={{color: 'lightskyblue'}} size="small" onClick={openPost}>
                     <MoreHorizIcon fontSize="medium" />
                 </Button>
             </div>

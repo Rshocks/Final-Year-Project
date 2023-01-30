@@ -11,4 +11,8 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  noPost: {
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
 }));

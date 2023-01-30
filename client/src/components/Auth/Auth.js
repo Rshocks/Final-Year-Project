@@ -90,7 +90,7 @@ const Auth = () => {
                         <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
                         {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
                     </Grid>
-                    <Button startIcon={<PersonIcon />} type="submit" fullwidth variant="contained" color="primary" className={classes.submit}>{isSignUp ? 'Sign Up' : 'Sign In'}</Button>
+                    <Button startIcon={<PersonIcon />} type="submit" fullwidth="true" variant="contained" color="primary" className={classes.submit}>{isSignUp ? 'Sign Up' : 'Sign In'}</Button>
                     <GoogleLogin 
                         clientId={clientId}
                         render={(renderProps) => (
@@ -100,7 +100,7 @@ const Auth = () => {
                         onFailure={googleFailure}
                         cookiePolicy="single_host_origin"
                     />
-                    <Grid container justify="flex-end">
+                    <Grid container justifyContent="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>{isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}</Button>
                         </Grid>

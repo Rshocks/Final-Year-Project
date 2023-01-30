@@ -17,13 +17,13 @@ const PostDetails = () => {
 
     useEffect(() =>{
         dispatch(getPost(id));
-    },[id]);
+    },[id, dispatch]);
 
     useEffect(() => {
         if (post) {
           dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
         }
-      }, [post]);
+      }, [post, dispatch]);
 
     if(!post) return null;
 
@@ -41,7 +41,7 @@ const PostDetails = () => {
             <div className={classes.card}>
                 <div className={classes.section}>
                     <Typography variant="h3" component="h2">{post.title}</Typography>
-                    <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+                    <Typography className={classes.tag} gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                     <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
                     <Typography variant="h6">Created by: {post.name}</Typography>
                     <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
@@ -57,7 +57,7 @@ const PostDetails = () => {
             </div>
             {recommendedPosts.length && (
                 <div className={classes.section}>
-                    <Typography gutterbottom varient="h5">You might also like these Echos:</Typography>
+                    <Typography gutterbottom="true" varient="h5">You might also like these Echos:</Typography>
                     <Divider />
                     <div className={classes.recommendedPosts}>
                         {recommendedPosts.map(({ title, message, name, likes, selectedFile, _id}) => (
@@ -66,7 +66,7 @@ const PostDetails = () => {
                                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
                                 <Typography gutterBottom variant="subtitle2">{message}</Typography>
                                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                                <img src={selectedFile} width="150px"/>
+                                <img src={selectedFile} width="150px" alt="review of selected file"/>
                             </div>
                         ))}
                     </div>
