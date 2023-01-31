@@ -18,6 +18,10 @@ app.use(cors());
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
+app.get('/', (req, res) => {
+    res.send('ECHO IS RUNNING!');
+})
+
 //Mongo is hosting my database in their cloud
 // add ip address on mongo cloud if not working
 const CONNECTION_URL = 'mongodb+srv://Ronan22:Ronan22@cluster1.ooyrle4.mongodb.net/?retryWrites=true&w=majority';
