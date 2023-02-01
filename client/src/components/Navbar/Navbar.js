@@ -52,7 +52,7 @@ const Navbar = () => {
                         <Button startIcon={<ExitToAppIcon />} variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                    <Button startIcon={<PersonIcon />} component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                    <Button className={classes.signin} startIcon={<PersonIcon />} component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>

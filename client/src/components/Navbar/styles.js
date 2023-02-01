@@ -37,4 +37,29 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  [theme.breakpoints.down('sm')]: {
+    appBar: {
+      padding: '10px 20px',
+    },
+    toolbar: {
+      width: '200px',
+    },
+    profile: {
+      width: '400px',
+      justifyContent: 'flex-start',
+    },
+    image: {
+      height: '25px',
+    },
+    userName: {
+      fontSize: '0.7em',
+    },
+    signin:{
+      fontSize: '0.5em',
+    },
+    logout:{
+      fontSize: '0.5em',
+      marginLeft: 'auto',
+    }
+  },
 }));
