@@ -13,3 +13,10 @@ Feature: Routing
     Then Assert page two loads correctly
     When A user paginates to page three
     Then Assert page three loads correctly
+
+    Scenario: Route to page details loads correctly
+    
+    Given A user is not signed in
+    When The user clicks the ellipses
+    Then Page details should be loaded correctly
+
