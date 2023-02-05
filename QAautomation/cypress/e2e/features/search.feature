@@ -1,4 +1,4 @@
-Feature: Assert the searchbar working correctly 
+Feature: Assert the searchbar working correctly for signed in user's and non signed in user's
 
     Scenario: Searchbar works correctly for a user not signed in
     

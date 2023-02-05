@@ -62,3 +62,52 @@ Then("Page details should be loaded correctly", () => {
     cy.get('p.MuiTypography-root.MuiTypography-body1[gutterbottom="true"][varient="h5"]')
     .should('contain', 'You might also like these Echos:');
 });
+
+// routing to sign up card
+// when is a user is not signed in taken from noAuthLiking.ts
+
+When("The user clicks the sign in button", () => {
+    cy.get('span.MuiButton-startIcon').first().click();
+});
+
+Then("User clicks 'DON'T HAVE AN ACCOUNT? SIGN UP' assert sign in page loads correctly", () => {
+    cy.get('button.MuiButton-root.MuiButton-text')
+    .click();
+
+    cy.get('h5.MuiTypography-root.MuiTypography-h5')
+    .should('contain', 'Sign Up')
+    .should('be.visible');
+    cy.get('span.MuiButton-startIcon.MuiButton-iconSizeMedium')
+    .should('exist');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Last Name');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Email Address');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Password');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Repeat Password');
+    cy.wait(3000);
+});
+
+// route to auth sign in
+// Given is taken from the given at top of this script
+// When is taken from above
+
+Then("The authorization page loads correctly", () => {
+    cy.get('h5.MuiTypography-root.MuiTypography-h5').contains('Sign In');
+    cy.get('button.MuiButton-containedPrimary')
+    .contains('Sign In')
+    .should('exist');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Email Address');
+
+    cy.get('label[data-shrink="false"]')
+    .contains('Password');
+    cy.wait(3000);
+});

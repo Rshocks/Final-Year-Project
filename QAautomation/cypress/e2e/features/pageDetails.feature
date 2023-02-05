@@ -1,4 +1,4 @@
-Feature: PageDetails
+Feature: PageDetails for signed in user's and non signed in user's
 
     Scenario: Comments do not appear when user is not signed in
 

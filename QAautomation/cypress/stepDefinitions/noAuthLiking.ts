@@ -8,7 +8,7 @@ When("A user is not signed", () => {
     .should('be.visible');
 });
 
-Then("A user clicks like nothing should happens", () => {
+Then("A user clicks like nothing should happen", () => {
     cy.get('button.MuiButton-root.Mui-disabled').should('be.disabled')
     .and('have.class', 'Mui-disabled')
     .should('have.css', 'pointer-events', 'none')
