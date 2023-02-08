@@ -10,14 +10,14 @@ Given("A user goes to the Sign Up card", () => {
 });
 
 When("A user is missing a field", () => {
+    cy.get('input[name="firstName"]')
+    .type('Cypress');
+
     cy.get('input[name="lastName"]')
     .type('Test');
 
     cy.get('input[type="email"]')
     .type('cypresstest@email.com')
-
-    cy.get('input[name="password"]')
-    .type('12345')
 
     cy.get('input[name="confirmPassword"]')
     .type('12345')
@@ -26,6 +26,8 @@ When("A user is missing a field", () => {
 });
 
 Then("A warning message should appear", () => {
+    cy.get('input[name="password"]').should('have.value', '');
+    
     cy.wait(3000);
     // try imporve this then part as it relies on visual seeing the text appear
 });
@@ -131,4 +133,37 @@ When("A user types all inputs but the email it already taken", () => {
 
     cy.get('input[name="confirmPassword"]')
     .type('12345')
+});
+
+// incorrect password
+Given("A user goes to the Sign In card", () => {
+    cy.visit("/");
+    cy.get('span.MuiButton-startIcon').first().click();
+});
+
+When("Enters all details but password is not correct", () => {
+    cy.get('input[type="email"]')
+    .type('CyAuto1@email.com')
+
+    //incorrect password 12345 is actual password
+    cy.get('input[name="password"]')
+    .type('123456')
+});
+
+// incorrect email
+When("Enters all details but email is not correct", () => {
+    //incorrect email CyAuto1 actual email
+    cy.get('input[type="email"]')
+    .type('CyAuto@email.com')
+
+    cy.get('input[name="password"]')
+    .type('12345')
+});
+
+// warning pop up on sign in card
+When("A user is missing a field in the sign in form", () => {
+    cy.get('input[type="email"]')
+    .type('CyAuto1@email.com')
+
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
 });
