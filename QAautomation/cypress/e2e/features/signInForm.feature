@@ -1,4 +1,4 @@
-Feature: Assert the SignUp Form is working correctly
+Feature: Assert the SignIn Form is working correctly
 
     Scenario: Unable to sign in if password is not correct
     

@@ -100,7 +100,6 @@ When("A user types all inputs with no mistakes", () => {
 });
 
 Then("The user should be signed into the application", () => {
-    cy.get('button.MuiButton-containedPrimary').eq(0).click();
 
     // website works as url changes when user has completed signing up
     cy.url().should('not.eq', 'https://echoatu.com/posts')
@@ -164,6 +163,17 @@ When("Enters all details but email is not correct", () => {
 When("A user is missing a field in the sign in form", () => {
     cy.get('input[type="email"]')
     .type('CyAuto1@email.com')
+
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
+});
+
+// sign user in
+When("A user inputs all the correct fields", () => {
+    cy.get('input[type="email"]')
+    .type('CyAuto1@email.com')
+
+    cy.get('input[name="password"]')
+    .type('12345')
 
     cy.get('button.MuiButton-containedPrimary').eq(0).click();
 });

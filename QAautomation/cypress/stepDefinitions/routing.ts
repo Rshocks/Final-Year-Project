@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 import {Given, When, Then} from "@badeball/cypress-cucumber-preprocessor";
 
+// pagination not signed in
 When("A user is not signed in paginates to page two", () => {
     cy.visit("/");
     cy.get('span.MuiButton-label')
@@ -10,7 +11,10 @@ When("A user is not signed in paginates to page two", () => {
 });
 
 Then("Assert page two loads correctly", () => {
+    //assert page has changed by logging url
     cy.url().should('include', 'page=2');
+
+    // sign in auth button should be visable not logout
     cy.get('a.MuiButton-containedPrimary[href="/auth"]').should('be.visible');
     cy.get('button.MuiButton-containedPrimary').should('be.visible');
     cy.wait(3000);
@@ -21,7 +25,10 @@ When("A user paginates to page three", () => {
 });
 
 Then("Assert page three loads correctly", () => {
+    //assert page has changed by logging url
     cy.url().should('include', 'page=3');
+
+    // sign in auth button should be visable not logout
     cy.get('a.MuiButton-containedPrimary[href="/auth"]').should('be.visible');
     cy.get('button.MuiButton-containedPrimary').should('be.visible');
     cy.wait(3000);
@@ -109,5 +116,45 @@ Then("The authorization page loads correctly", () => {
 
     cy.get('label[data-shrink="false"]')
     .contains('Password');
+    cy.wait(3000);
+});
+
+// pagination for signed in user
+Given("A user is signed in", () => {
+    cy.visit("/");
+    cy.get('span.MuiButton-startIcon').first().click();
+
+    cy.get('input[type="email"]')
+    .type('CyAuto1@email.com')
+
+    cy.get('input[name="password"]')
+    .type('12345')
+
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
+});
+
+When("The user routes to page two it should load properly", () => {
+    cy.get('a[aria-label="Go to page 2"]').click();
+
+    //assert page has changed by logging url
+    cy.url().should('include', 'page=2');
+
+    //This asserts user is signed in else this would not appear
+    cy.get('h6.MuiTypography-root.jss5.MuiTypography-h6').should('exist')
+    cy.get('.jss7').should('exist')
+
+    cy.wait(3000);
+});
+
+Then("If the user routes to page three it should load properly", () => {
+    cy.get('a[aria-label="Go to page 3"]').click();
+
+    //assert page has changed by logging url
+    cy.url().should('include', 'page=3');
+
+    //This asserts user is signed in else this would not appear
+    cy.get('h6.MuiTypography-root.jss5.MuiTypography-h6').should('exist')
+    cy.get('.jss7').should('exist')
+
     cy.wait(3000);
 });
