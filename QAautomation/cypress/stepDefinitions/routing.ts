@@ -61,7 +61,7 @@ Then("A card telling user to signIn or Up appears", () => {
 
 When("The user clicks the ellipses", () => {
     cy.get('button.MuiButton-text').eq(0)
-  .click();
+    .click();
 });
 
 Then("Page details should be loaded correctly", () => {

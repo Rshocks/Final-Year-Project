@@ -97,12 +97,14 @@ When("A user types all inputs with no mistakes", () => {
 
     cy.get('input[name="confirmPassword"]')
     .type('12345')
+
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
 });
 
 Then("The user should be signed into the application", () => {
 
     // website works as url changes when user has completed signing up
-    cy.url().should('not.eq', 'https://echoatu.com/posts')
+    cy.url().should('eq', 'https://echoatu.com/posts');
 
     //This asserts that the users name appears in the navbar
     cy.get('h6.MuiTypography-root.jss5.MuiTypography-h6').should('exist')

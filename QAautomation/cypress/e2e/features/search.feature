@@ -1,4 +1,4 @@
-Feature: Assert the searchbar working correctly for signed in user's and non signed in user's
+Feature: Searchbar working correctly for signed in and non signed in users
 
     Scenario: Searchbar works correctly for a user not signed in
     
@@ -6,7 +6,7 @@ Feature: Assert the searchbar working correctly for signed in user's and non sig
     When The user types 'Delhi Museum' in the search bar
     Then The correct echo appears
 
-    Scenario: Error message appears if a non signed in user searches for a non-existent echo
+    Scenario: Error message appears if echo doesn't exist
 
     Given A non-authenticated user is on the homepage
     When A non auth user types in the searchbar 'Q'

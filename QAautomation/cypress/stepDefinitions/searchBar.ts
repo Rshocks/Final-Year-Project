@@ -17,7 +17,6 @@ Then("The correct echo appears", () => {
     cy.get('p.MuiTypography-root')
     .contains('Delhi Museum')
     .should('be.visible');
-    cy.wait(3000);
 });
 
 //Incorrect search in searchbar
@@ -31,5 +30,4 @@ Then("Assert an error message appears", () => {
     .should('be.visible');
     cy.contains("There isn't an echo with the provided name or tag; make sure the tags are capitalized and lowercase, and check that the title is written correctly.")
     .should('be.visible');
-    cy.wait(3000);
 });

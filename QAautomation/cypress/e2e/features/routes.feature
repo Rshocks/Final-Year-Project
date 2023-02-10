@@ -1,4 +1,4 @@
-Feature: Routing for user's not signed in
+Feature: Routing for users signed in and not signed in
 
     Scenario: Homepage displays correctly when user is not signed in
 
@@ -31,3 +31,15 @@ Feature: Routing for user's not signed in
     Given A user is not signed in
     When The user clicks the sign in button
     Then User clicks 'DON'T HAVE AN ACCOUNT? SIGN UP' assert sign in page loads correctly
+
+    Scenario: A signed in user is able to paginate between different pages
+
+    Given A user is signed in
+    When The user routes to page two it should load properly
+    Then If the user routes to page three it should load properly
+
+    Scenario: A signed in user is able to go to the page details route
+
+    Given A user is signed in
+    When The user clicks the ellipses
+    Then Page details should be loaded correctly
