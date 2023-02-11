@@ -131,6 +131,7 @@ Given("A user is signed in", () => {
     .type('12345')
 
     cy.get('button.MuiButton-containedPrimary').eq(0).click();
+    cy.wait(3000);
 });
 
 When("The user routes to page two it should load properly", () => {

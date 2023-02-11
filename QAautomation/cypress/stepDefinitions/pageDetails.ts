@@ -17,3 +17,18 @@ Then("Assert that recommended echoes appear", () => {
     cy.contains('Likes:').should('be.visible');
     cy.get('h6.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom').first()
 });
+
+// signed in user must wait as test goes to quick to cypress to spot button to click sometimes
+Given("A user is signed in and waiting for the page to load", () => {
+    cy.visit("/");
+    cy.get('span.MuiButton-startIcon').first().click();
+
+    cy.get('input[type="email"]')
+    .type('CyAuto1@email.com')
+
+    cy.get('input[name="password"]')
+    .type('12345')
+
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
+    cy.wait(3000);
+});

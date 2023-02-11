@@ -1,4 +1,4 @@
-Feature: Miscellaneous features working correctly for signed in and non signed in users
+Feature: User actions working correctly for signed in and non signed in users
 
     Scenario: Liking doesn't work if user is not signed in
 
