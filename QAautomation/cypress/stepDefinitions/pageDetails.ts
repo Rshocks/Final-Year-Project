@@ -32,3 +32,14 @@ Given("A user is signed in and waiting for the page to load", () => {
     cy.get('button.MuiButton-containedPrimary').eq(0).click();
     cy.wait(3000);
 });
+
+// assert comments appear for signed in user
+Then("Assert that comments appear", () => {
+    cy.get('h6.MuiTypography-root.MuiTypography-h6').contains('Comments').should('be.visible');
+
+    cy.get('h6.MuiTypography-root.MuiTypography-subtitle1.MuiTypography-gutterBottom').first().should('be.visible');
+
+    cy.get('h6.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom')
+    .contains('Comment on this echo')
+    .should('be.visible');
+});

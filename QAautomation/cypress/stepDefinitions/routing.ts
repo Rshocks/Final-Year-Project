@@ -131,6 +131,9 @@ Given("A user is signed in", () => {
     .type('12345')
 
     cy.get('button.MuiButton-containedPrimary').eq(0).click();
+
+    cy.get('h6.MuiTypography-root.jss5.MuiTypography-h6').should('exist')
+    cy.get('.jss7').should('exist')
     cy.wait(3000);
 });
 
@@ -158,4 +161,26 @@ Then("If the user routes to page three it should load properly", () => {
     cy.get('.jss7').should('exist')
 
     cy.wait(3000);
+});
+
+// asserting echoes load
+When("User is on page one echoes load correctly", () => {
+    cy.url().should('include', '/posts');
+
+    // dom element for echoes
+    cy.get('div.MuiPaper-root.MuiCard-root.jss49.MuiPaper-elevation6.MuiPaper-rounded').should('be.visible');
+});
+Then("User routes to page two where page twos echoes load correctly", () => {
+    cy.get('a[aria-label="Go to page 2"]').click();
+    cy.url().should('include', 'page=2');
+
+    // dom element for echoes
+    cy.get('div.MuiPaper-root.MuiCard-root.jss59.MuiPaper-elevation6.MuiPaper-rounded').should('be.visible');
+});
+Then("User routes to page three where page threes echoes load correctly", () => {
+    cy.get('a[aria-label="Go to page 3"]').click();
+    cy.url().should('include', 'page=3');
+
+    // dom element for echoes
+    cy.get('div.MuiPaper-root.MuiCard-root.jss69.MuiPaper-elevation6.MuiPaper-rounded').should('be.visible');
 });

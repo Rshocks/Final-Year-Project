@@ -1,5 +1,11 @@
 Feature: PageDetails for signed in user's and non signed in user's
 
+    Scenario: Comments appear when user is signed in
+
+    Given A user is signed in
+    When The user clicks the ellipses
+    Then Assert that comments appear
+
     Scenario: Comments do not appear when user is not signed in
 
     Given A user is not signed in

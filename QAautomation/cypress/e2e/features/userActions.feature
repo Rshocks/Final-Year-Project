@@ -6,6 +6,12 @@ Feature: User actions working correctly for signed in and non signed in users
     When The user fills out details to create a Echo
     Then The user clicks post and assert is loads
 
+    Scenario: User to be able to comment on a post
+
+    Given A user is signed in
+    When The user clicks the ellipses
+    Then User comments on the echo and the comment appears
+
     Scenario: User deletes their echo
 
     Given A the relevant user is signed in
