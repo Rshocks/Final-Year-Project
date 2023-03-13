@@ -23,3 +23,15 @@ Feature: Searchbar working correctly for signed in and non signed in users
     Given A user is signed in
     When A non auth user types in the searchbar 'Q'
     Then Assert an error message appears
+
+    Scenario: Search using tags works correctly for signed in user
+
+    Given A user is signed in
+    When A user types 'Ireland' into the tags
+    Then All posts associated with Ireland appear
+
+    Scenario: Error message using tags works correctly for signed in user
+
+    Given A user is signed in
+    When A user types 'Q' into the tags
+    Then Assert an error message appears

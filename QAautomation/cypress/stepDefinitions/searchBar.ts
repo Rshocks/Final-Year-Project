@@ -43,3 +43,24 @@ Then("The correct echo appears for a signed in user", () => {
     .contains('All Ireland')
     .should('be.visible');
 });
+
+// using tags for a signed in user
+When("A user types 'Ireland' into the tags", () => {
+    cy.get('.jss76 > .MuiInputBase-root > .MuiInputBase-input')
+    .type('Ireland')
+    .type('{enter}')
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
+});
+
+Then("All posts associated with Ireland appear", () => {
+    cy.get('.MuiGrid-grid-md-9 > .MuiGrid-container > :nth-child(1)')
+    .should('exist')
+});
+
+//tags for signed in user error
+When("A user types 'Q' into the tags", () => {
+    cy.get('.jss76 > .MuiInputBase-root > .MuiInputBase-input')
+    .type('Q')
+    .type('{enter}')
+    cy.get('button.MuiButton-containedPrimary').eq(0).click();
+});

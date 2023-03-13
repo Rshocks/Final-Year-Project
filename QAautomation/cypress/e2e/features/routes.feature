@@ -10,9 +10,9 @@ Feature: Routing for users signed in and not signed in
     Scenario: Echoes displaying signed in user
 
     Given A user is signed in
-    When User is on page one echoes load correctly
-    Then User routes to page two where page twos echoes load correctly
-    Then User routes to page three where page threes echoes load correctly
+    When A signed in user is on page one echoes load correctly
+    Then A signed in user routes to page two where page twos echoes load correctly
+    Then A signed in user routes to page three where page threes echoes load correctly
 
     Scenario: Homepage displays correctly when user is not signed in
 

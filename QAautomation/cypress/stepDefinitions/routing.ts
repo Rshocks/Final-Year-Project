@@ -184,3 +184,25 @@ Then("User routes to page three where page threes echoes load correctly", () => 
     // dom element for echoes
     cy.get('div.MuiPaper-root.MuiCard-root.jss69.MuiPaper-elevation6.MuiPaper-rounded').should('be.visible');
 });
+
+// asserting echoes load a signed in user 
+When("A signed in user is on page one echoes load correctly", () => {
+    cy.url().should('include', '/posts');
+
+    // dom element for echoes
+    cy.get('.MuiGrid-grid-md-9 > .MuiGrid-container > :nth-child(1)').should('be.visible');
+});
+Then("A signed in user routes to page two where page twos echoes load correctly", () => {
+    cy.get('a[aria-label="Go to page 2"]').click();
+    cy.url().should('include', 'page=2');
+
+    // dom element for echoes
+    cy.get('.MuiGrid-grid-md-9 > .MuiGrid-container > :nth-child(1)').should('be.visible');
+});
+Then("A signed in user routes to page three where page threes echoes load correctly", () => {
+    cy.get('a[aria-label="Go to page 3"]').click();
+    cy.url().should('include', 'page=3');
+
+    // dom element for echoes
+    cy.get('.MuiGrid-grid-md-9 > .MuiGrid-container > :nth-child(1)').should('be.visible');
+});
