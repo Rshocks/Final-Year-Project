@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'; // to help hash user passwords to keep them hidden using blowfish cipher
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 import User from '../models/user.js';
 
@@ -30,26 +31,65 @@ export const signin = async (req, res) => {
 }
 
 export const signup = async (req, res) => {
-    const {email, password, confirmPassword, firstName, lastName} = req.body;
-
+    const { email, password, confirmPassword, firstName, lastName } = req.body;
+  
     try {
-        const existingUser = await User.findOne({ email });
-
-        if(existingUser) return res.status(400).json({ message: "User already exist"});
-
-        // might need to change
-        if(password != confirmPassword) return res.status(400).json({ message: "Passwords don't match"});
-
-        //Salt means, 12 is difficulty of password
-        const hashedPassword = await bcrypt.hash(password, 12);
-
-        // put hashed password back in when bug is found
-        const result = await User.create({email, password, hashedPassword, name: `${firstName} ${lastName}`});
-
-        const token = jwt.sign({ email: result.email, id: result._id}, secret, {expiresIn: "1h"});
-
-        res.status(200).json({ result, token});
+      const existingUser = await User.findOne({ email });
+  
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists" });
+      }
+  
+      if (password !== confirmPassword) {
+        return res.status(400).json({ message: "Passwords don't match" });
+      }
+  
+      const hashedPassword = await bcrypt.hash(password, 12);
+  
+      const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
+  
+      const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
+  
+      await sendEmail(result.email);
+  
+      res.status(200).json({ result, token });
     } catch (error) {
-        res.status(500).json({ message: 'Unidentified error'})
+      res.status(500).json({ message: 'Unidentified error' })
     }
 }
+
+export const sendEmail = async (email) => {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'EchoAtu@gmail.com',
+          pass: 'yklmrwhzmuivtxdp'
+        }
+      });
+  
+      const mailOptions = {
+        from: 'EchoAtu@gmail.com',
+        to: email,
+        subject: 'Welcome to Echo!',
+        html: `
+          <html>
+            <body style="background-color: #f8f8f8; font-family: Arial, sans-serif; color: #333;">
+              <h1 style="color: #333;">Welcome to Echo!</h1>
+              <p style="font-size: 16px;">Dear user,</p>
+              <p style="font-size: 16px;">Thank you for signing up to echo! We are excited to have you as part of our community.</p>
+              <p style="font-size: 16px;">If you have any questions or feedback, please don't hesitate to reach out to us at the above email.</p>
+              <p style="font-size: 16px;">Best regards,</p>
+              <p style="font-size: 16px;">Echo</p>
+            </body>
+          </html>
+        `
+      };
+  
+      await transporter.sendMail(mailOptions);
+  
+      console.log('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email: ', error);
+    }
+};
