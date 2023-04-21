@@ -35,3 +35,10 @@ Feature: Searchbar working correctly for signed in and non signed in users
     Given A user is signed in
     When A user types 'Q' into the tags
     Then Assert an error message appears
+
+    Scenario: Search using tags and search title
+    
+    Given A non-authenticated user is on the homepage
+    When A user types 'MughalHistory' into the tags
+    When The user types 'Delhi Museum' in the search bar
+    Then All posts associated with 'MughalHistory' and 'Delhi Museum' appear

@@ -54,6 +54,7 @@ When("A user types 'Ireland' into the tags", () => {
 
 Then("All posts associated with Ireland appear", () => {
     cy.get('.MuiGrid-grid-md-9 > .MuiGrid-container > :nth-child(1)')
+    .contains('Ireland')
     .should('exist')
 });
 
@@ -63,4 +64,23 @@ When("A user types 'Q' into the tags", () => {
     .type('Q')
     .type('{enter}')
     cy.get('button.MuiButton-containedPrimary').eq(0).click();
+});
+
+// seach tags and title
+When("A user types 'MughalHistory' into the tags", () => {
+    cy.get('.jss24 > .MuiInputBase-root > .MuiInputBase-input')
+    .type('MughalHistory')
+    .type('{enter}')
+});
+
+Then("All posts associated with 'MughalHistory' and 'Delhi Museum' appear", () => {
+    cy.wait(2000);
+
+    cy.get(':nth-child(1) > .MuiContainer-root')
+    .contains('MughalHistory')
+    .should('exist')
+
+    cy.get(':nth-child(1) > .MuiContainer-root')
+    .contains('Delhi Museum')
+    .should('exist')
 });

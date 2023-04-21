@@ -30,18 +30,18 @@ Echo is a social media sharing full stack system that was created to complement 
 - Task Tracking: Jira Software
 
 ## Interaction
-Prerequisites: [Node.js](https://nodejs.org/en/download) and [Visual Studio Code](https://code.visualstudio.com/download)
-The application can be interated with online at https://echoatu.com/ , the testing suite must be used locally.
+Prerequisites: [Node.js](https://nodejs.org/en/download) and [Visual Studio Code](https://code.visualstudio.com/download) will have to be installed for interaction, the deployed application can be interacted online at https://echoatu.com/ , the testing suite must be used locally.
 
 ### Local Interaction with the test suite
+If a tests fails first time re run said test feature should fix the issue:
 - Clone this repository to your local environment.
 - Go to the QAautomation folder, go to the terminal in the folder.
 - Run npm install in the terminal.
-- After the above run npm run cypress:open, click E2E Testing and choose a browser.
-- Click any feature to test while in the Spec.
+- After the above is finished, run npm run cypress:open, a localhost window will open, then click E2E Testing and choose a browser.
+- Click any feature you wish to test while in Spec.
 
 ### Local Interaction with the system
 - Clone this repository to your local environment.
-- Go to the client and server folders, and run the terminal.
-- Run npm install in the client and server terminals.
-- Still in each terminal run npm start, at which point the application will launch on your local enviroment.
+- Go to the client and server folders, and run a terminal environment in both.
+- Run npm install in both terminals.
+- In each terminal run npm start, at which point the application will launch on your local environment.
