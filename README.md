@@ -41,6 +41,7 @@ If a tests fails first time re run said test feature should fix the issue:
 - Click any feature you wish to test while in Spec.
 
 ### Local Interaction with the system
+If npm install fails, run npm install --legacy-peer-deps
 - Clone this repository to your local environment.
 - Go to the client and server folders, and run a terminal environment in both.
 - Run npm install in both terminals.
