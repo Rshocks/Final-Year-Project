@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 //Mongo is hosting my database in their cloud
 // add ip address on mongo cloud if not working
-const CONNECTION_URL = 'mongodb+srv://Ronan22:Ronan22@cluster1.ooyrle4.mongodb.net/?retryWrites=true&w=majority';
+// fill in your own mongodb connection here -> const CONNECTION_URL = ;
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})

@@ -5,7 +5,7 @@ const createEsBuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esb
 
 module.exports = defineConfig({
     e2e: {
-      baseUrl: 'https://echoatu.com',
+      baseUrl: 'http://localhost:3000/',
       async setupNodeEvents(on, config) {
 
       const bundler = createBundler({

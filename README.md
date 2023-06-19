@@ -30,7 +30,7 @@ Echo is a social media sharing full stack system that was created to complement 
 - Task Tracking: Jira Software
 
 ## Interaction
-Prerequisites: [Node.js](https://nodejs.org/en/download) and [Visual Studio Code](https://code.visualstudio.com/download) will have to be installed for interaction, the deployed application can be interacted online at https://echoatu.com/ , the testing suite must be used locally.
+Prerequisites: [Node.js](https://nodejs.org/en/download) and [Visual Studio Code](https://code.visualstudio.com/download) will have to be installed for interaction, the application was deployed but can only be used locally now, the testing suite must be used locally.
 
 ### Local Interaction with the test suite
 If a tests fails first time re run said test feature should fix the issue:
@@ -42,6 +42,7 @@ If a tests fails first time re run said test feature should fix the issue:
 
 ### Local Interaction with the system
 If npm install fails, run npm install --legacy-peer-deps
+Your own MongoDB connection must be made and placed into the index.js in the server side line 27, it will not work if you don't do this!
 - Clone this repository to your local environment.
 - Go to the client and server folders, and run a terminal environment in both.
 - Run npm install in both terminals.
